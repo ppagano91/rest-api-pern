@@ -9,7 +9,9 @@
         "lib": ["ESNext"],
         "strict": false,
         "esModuleInterop": true,
-        "declaration": true
+        "declaration": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "include": [
         "src/**/*.ts"
