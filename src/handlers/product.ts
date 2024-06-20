@@ -75,7 +75,7 @@ export const updateAvailability = async (req: Request, res: Response) =>{
                 "msg": `No existe Producto con ID = ${id}`
             })
         }
-        product.availability = req.body.availability;
+        product.availability = !product.dataValues.availability;
         await product.save();
 
         res.json({data: product})

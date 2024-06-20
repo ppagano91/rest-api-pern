@@ -38,8 +38,6 @@ router.put("/:id",
 
 // PATCH: Realiza actualizaciones parciales
 router.patch("/:id",
-    body("availability")
-        .isBoolean().withMessage("Valor de \"disponibilidad\" no válido"),
     handleInputErrors,
     updateAvailability
 )
