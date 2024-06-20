@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProduct, getProductById, getProducts } from "./handlers/product";
+import { createProduct, getProductById, getProducts, updateAvailability, updateProduct } from "./handlers/product";
 import { body, param } from "express-validator"
 import { handleInputErrors } from "./middleware";
 
@@ -22,9 +22,27 @@ router.post("/",
     handleInputErrors,
     createProduct)
 
-router.put("/", (req, res) =>{
-    res.json("PUT")
-})
+// PUT: Realiza actualizaciones completas
+router.put("/:id",
+    body("name")
+            .notEmpty().withMessage("El nombre del Producto no puede estar vacío"),
+    body("price")
+            .isNumeric().withMessage("El valor del precio debe ser un número")
+            .notEmpty().withMessage("El precio del Producto no puede estar vacío")
+            .custom((value)=>{return value > 0}).withMessage("El precio del Producto debe ser mayor a 0"),
+    body("availability")
+        .isBoolean().withMessage("Valor de \"disponibilidad\" no válido"),
+    handleInputErrors,
+    updateProduct
+)
+
+// PATCH: Realiza actualizaciones parciales
+router.patch("/:id",
+    body("availability")
+        .isBoolean().withMessage("Valor de \"disponibilidad\" no válido"),
+    handleInputErrors,
+    updateAvailability
+)
 
 router.delete("/", (req, res) =>{
     res.json("DELETE")
