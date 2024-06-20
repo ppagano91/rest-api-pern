@@ -10,7 +10,8 @@ const db = new Sequelize(process.env.DATABASE_URL,
             ssl: {
                 require: false
             }
-        }
+        },
+        logging: false
     }
 );
 

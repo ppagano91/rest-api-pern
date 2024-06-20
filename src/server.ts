@@ -13,7 +13,7 @@ async function connectDB(){
     try {
         await db.authenticate();
         db.sync();
-        console.log(colors.magenta("Conexión existosa a la DB"));
+        // console.log(colors.magenta("Conexión existosa a la DB"));
     } catch (error) {
         console.log(error)
         console.log(colors.bgRed.white("Error al conectar la DB"));
@@ -23,5 +23,8 @@ async function connectDB(){
 connectDB();
 
 server.use("/api/products", router);
+server.get("/api", (req, res) => {
+    res.json({msg: "GET /api"})
+})
 
 export default server;
