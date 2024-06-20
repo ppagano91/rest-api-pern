@@ -1,0 +1,2 @@
+Crear archivo jest.config.js
+npx ts-jest config:init
