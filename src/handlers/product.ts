@@ -1,5 +1,4 @@
 import { Request, Response } from "express"
-import  { check, validationResult } from "express-validator"
 import Product from "../models/Product.model"
 
 export const getProducts = async (req: Request, res: Response) => {
@@ -8,6 +7,22 @@ export const getProducts = async (req: Request, res: Response) => {
             {attributes: {exclude: ["createdAt", "updatedAt", "availability"]}}
         );
         res.json({data: products})
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getProductById = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const product = await Product.findByPk(id);
+        if(!product){
+            return res.status(404).json({
+                "error": true,
+                "msg": `No existe Producto con ID = ${id}`
+            })
+        }
+        res.json({data: product})
     } catch (error) {
         console.log(error);
     }
