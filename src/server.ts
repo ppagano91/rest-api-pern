@@ -3,7 +3,11 @@ import colors from "colors"
 import router from "./router"
 import db from "./config/db"
 
+// Instancia de express
 const server = express();
+
+// Leer datos JSON de body
+server.use(express.json())
 
 async function connectDB(){
     try {
