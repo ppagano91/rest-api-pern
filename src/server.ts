@@ -9,7 +9,7 @@ const server = express();
 // Leer datos JSON de body
 server.use(express.json())
 
-async function connectDB(){
+export async function connectDB(){
     try {
         await db.authenticate();
         db.sync();

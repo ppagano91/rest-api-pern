@@ -1,5 +1,6 @@
 import request from "supertest"
-import server from "../../server"
+import server, { connectDB } from "../../server"
+import db from "../../config/db"
 
 describe("POST /api/products", () => {
     it("Should display validation errors", async () => {
@@ -234,3 +235,18 @@ describe("DELETE /api/products/:id", () => {
         expect(response.status).not.toBe(404);
     })
 })
+
+// TODO: No funciona
+// jest.mock("../../config/db");   //mock
+// describe("Connect DB", () => {
+//     it("Should handle database connection error", async () => {
+//         jest.spyOn(db, "authenticate").mockRejectedValueOnce(new Error("Error al conectar la DB"));
+//         const consoleSpy = jest.spyOn(console, "log")
+
+//         await connectDB();
+
+//         expect(consoleSpy).toHaveBeenCalledWith(
+//             expect.stringContaining("Error al conectar la DB")
+//         );
+//     })
+// })
