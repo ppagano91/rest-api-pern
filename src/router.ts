@@ -4,6 +4,30 @@ import { body, param } from "express-validator"
 import { handleInputErrors } from "./middleware";
 
 const router = Router();
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *          Prodcut:
+ *              type: object
+ *              properties:
+ *                  id:
+ *                      type: integer
+ *                      description: The Product ID
+ *                      example: 1
+ *                  name:
+ *                      type: string
+ *                      description: The Product name
+ *                      example: Monitor Curvo Samsung
+ *                  price:
+ *                      type: number
+ *                      description: The Product price
+ *                      example: 500
+ *                  availability:
+ *                      type: boolean
+ *                      description: The Product availability
+ *                      example: true
+ */
 
 router.get("/", getProducts)
 router.get("/:id",
