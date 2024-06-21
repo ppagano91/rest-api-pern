@@ -37,7 +37,7 @@ export const createProduct = async (req: Request, res: Response) => {
         */
        /* OPCION 2*/
        const product = await Product.create(req.body)
-       res.json({
+       res.status(201).json({
            data: product
         });
     } catch (error) {
