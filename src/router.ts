@@ -109,6 +109,10 @@ router.get("/:id",
  *          responses:
  *              201:
  *                  description: Product created successfully
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Product'
  *              400:
  *                  description: Bad Request - Invalid input data
  */
@@ -123,6 +127,50 @@ router.post("/",
     createProduct)
 
 // PUT: Realiza actualizaciones completas
+
+/**
+ * @swagger
+ * api/products:
+ *      put:
+ *          summary: Update a product with user input
+ *          tags:
+ *              - Products
+ *          description: Returns the updated product
+ *          parameters:
+ *            - in: path
+ *              name: id
+ *              description: The Id of the product to retrieve
+ *              required: true
+ *              schema:
+ *                  type: integer
+*          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              name:
+ *                                  type: string
+ *                                  example: "Monitor Curvo Samsung"
+ *                              price:
+ *                                  type: number
+ *                                  example: 499
+ *                              availability:
+ *                                  type: boolean
+ *                                  example: true
+ *          responses:
+ *              200:
+ *                  description: Product updated successfully
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Product'
+ *              400:
+ *                  description: Bad Request - Invalid ID orinput data
+ *              404:
+ *                  description: Product not found
+ */
 router.put("/:id",
     param("id").isInt().withMessage("ID no válido"),
     body("name")
