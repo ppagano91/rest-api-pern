@@ -8,7 +8,7 @@ const router = Router();
  * @swagger
  * components:
  *      schemas:
- *          Prodcut:
+ *          Product:
  *              type: object
  *              properties:
  *                  id:
@@ -27,6 +27,26 @@ const router = Router();
  *                      type: boolean
  *                      description: The Product availability
  *                      example: true
+ */
+
+
+/**
+ * @swagger
+ * /api/products:
+ *      get:
+ *          summary: Get a list of Products
+ *          tags:
+ *              - Products
+ *          description: Return a list of Products
+ *          responses:
+ *              200:
+ *                  description: Successful response
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Product'
  */
 
 router.get("/", getProducts)
