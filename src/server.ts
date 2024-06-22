@@ -1,7 +1,7 @@
 import express from "express"
 import colors from "colors"
 import swaggerUi from "swagger-ui-express"
-import swaggeerSpec from "./config/swagger"
+import swaggeerSpec, {swaggerUiOptions} from "./config/swagger"
 
 import router from "./router"
 import db from "./config/db"
@@ -33,7 +33,7 @@ server.get("/api", (req, res) => {
 })
 
 // Docs
-server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggeerSpec))
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggeerSpec, swaggerUiOptions))
 
 
 export default server;
