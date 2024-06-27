@@ -1,5 +1,6 @@
 import express from "express"
 import colors from "colors"
+import cors, {CorsOptions} from "cors"
 import swaggerUi from "swagger-ui-express"
 import swaggeerSpec, {swaggerUiOptions} from "./config/swagger"
 
@@ -8,6 +9,18 @@ import db from "./config/db"
 
 // Instancia de express
 const server = express();
+
+const corsOptions: CorsOptions = {
+    origin: function(origin, callback){
+        if(origin === process.env.FRONTEND_URL){
+            callback(null, true);
+        } else{
+            callback(new Error("Error de CORS"), false)
+        }
+    }
+}
+
+server.use(cors(corsOptions));
 
 // Leer datos JSON de body
 server.use(express.json())

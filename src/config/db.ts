@@ -3,16 +3,12 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const db = new Sequelize(process.env.DATABASE_URL,
-    {
-        models: [__dirname + '/../models/**/*.ts'],
-        dialectOptions: {
-            ssl: {
-                require: false
-            }
-        },
-        logging: false
-    }
-);
+const db = new Sequelize(process.env.DATABASE_URL, {
+    models: [__dirname + '/../models/**/*.ts'],
+    dialectOptions: {
+        ssl: process.env.DB_SSL === 'true' ? { require: true, rejectUnauthorized: false } : false,
+    },
+    logging: false
+});
 
 export default db;
