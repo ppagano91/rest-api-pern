@@ -1,6 +1,7 @@
 import express from "express"
 import colors from "colors"
 import cors, {CorsOptions} from "cors"
+import morgan from "morgan"
 import swaggerUi from "swagger-ui-express"
 import swaggeerSpec, {swaggerUiOptions} from "./config/swagger"
 
@@ -37,6 +38,8 @@ export async function connectDB(){
 }
 
 connectDB();
+
+server.use(morgan("dev"));
 
 server.use("/api/products", router);
 
